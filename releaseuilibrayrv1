@@ -108,8 +108,8 @@
 			["outline"] = hex("#0A0A0A"), -- 
 			["inline"] = hex("#2D2D2D"), --
 			["accent"] = hex("#d75f86"), --
-			["high_contrast"] = hex("#2d2d2d"),
-			["low_contrast"] = hex("#2d2d2d"),
+			["high_contrast"] = hex("#101010"),
+			["low_contrast"] = hex("#101010"),
 			["text"] = hex("#B4B4B4"),
 			["text_outline"] = rgb(0, 0, 0),
 			["glow"] = hex("#d75f86"), 
