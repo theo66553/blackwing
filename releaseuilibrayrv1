@@ -1650,7 +1650,7 @@
 					library:update_theme("accent", color)
 				end, flag = "Accent"})
 				section:label({name = "Contrast"})
-				:colorpicker({name = "Low", color = themes.preset.low_contrast, flag = "low_contrast", callback = function(color)
+				:colorpicker({name = "Low", color = Color3.fromRGB(45, 45, 45), flag = "low_contrast", callback = function(color)
 					if (flags["high_contrast"] and flags["low_contrast"]) then 
 						library:update_theme("contrast", rgbseq{
 							rgbkey(0, flags["low_contrast"].Color),
@@ -1660,7 +1660,7 @@
 
 					library:update_theme("low_contrast", flags["low_contrast"].Color)
 				end})
-				:colorpicker({name = "High", color = themes.preset.high_contrast, flag = "high_contrast", callback = function(color)
+				:colorpicker({name = "High", color = Color3.fromRGB(45, 45, 45), flag = "high_contrast", callback = function(color)
 					library:update_theme("contrast", rgbseq{
 						rgbkey(0, flags["low_contrast"].Color),
 						rgbkey(1, flags["high_contrast"].Color)
