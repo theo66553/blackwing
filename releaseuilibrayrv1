@@ -107,7 +107,7 @@
 		preset = {
 			["outline"] = hex("#0A0A0A"), -- 
 			["inline"] = hex("#2D2D2D"), --
-			["accent"] = hex("#d75f86"), --
+			["accent"] = hex("#e68181"), --
 			["high_contrast"] = hex("#101010"),
 			["low_contrast"] = hex("#101010"),
 			["text"] = hex("#B4B4B4"),
@@ -142,7 +142,7 @@
 			["glow"] = {
 				["ImageColor3"] = {}, 	
 			}, 
-			["high_contrast"] = {
+			[""] = {
 				["BackgroundColor3"] = {},
 			},
 			["low_contrast"] = {
@@ -1003,8 +1003,8 @@
 					BorderColor3 = rgb(0, 0, 0);
 					Size = dim2(1, -2, 1, -2);
 					BorderSizePixel = 0;
-					BackgroundColor3 = themes.preset.high_contrast
-				});	library:apply_theme(items.Background, "high_contrast", "BackgroundColor3")
+					BackgroundColor3 = themes.preset.
+				});	library:apply_theme(items.Background, "", "BackgroundColor3")
 				
 				items.Inline = library:create( "Frame" , {
 					Parent = items.Background;
@@ -1416,7 +1416,7 @@
 					Name = "",
 					Rotation = 90,
 					Color = rgbseq{
-						rgbkey(0, themes.preset.high_contrast),
+						rgbkey(0, themes.preset.),
 						rgbkey(1, themes.preset.low_contrast)
 					}
 				})
@@ -1505,7 +1505,7 @@
 					Name = "",
 					Rotation = 90,
 					Color = rgbseq{
-						rgbkey(0, themes.preset.high_contrast),
+						rgbkey(0, themes.preset.),
 						rgbkey(1, themes.preset.low_contrast)
 					}
 				})
@@ -1650,7 +1650,7 @@
 					library:update_theme("accent", color)
 				end, flag = "Accent"})
 				section:label({name = "Contrast"})
-				:colorpicker({name = "Low", color = Color3.fromRGB(45, 45, 45), flag = "low_contrast", callback = function(color)
+				:colorpicker({name = "Low", color = themes.preset.low_contrast, flag = "low_contrast", callback = function(color)
 					if (flags["high_contrast"] and flags["low_contrast"]) then 
 						library:update_theme("contrast", rgbseq{
 							rgbkey(0, flags["low_contrast"].Color),
@@ -1660,7 +1660,7 @@
 
 					library:update_theme("low_contrast", flags["low_contrast"].Color)
 				end})
-				:colorpicker({name = "High", color = Color3.fromRGB(45, 45, 45), flag = "high_contrast", callback = function(color)
+				:colorpicker({name = "High", color = themes.preset.high_contrast, flag = "high_contrast", callback = function(color)
 					library:update_theme("contrast", rgbseq{
 						rgbkey(0, flags["low_contrast"].Color),
 						rgbkey(1, flags["high_contrast"].Color)
