@@ -69,7 +69,7 @@
 
 -- library init
 	local library = {
-		directory = "blackwing",
+		directory = "Blackwing",
 		folders = {
 			"/fonts",
 			"/configs",
@@ -142,7 +142,7 @@
 			["glow"] = {
 				["ImageColor3"] = {}, 	
 			}, 
-			[""] = {
+			["high_contrast"] = {
 				["BackgroundColor3"] = {},
 			},
 			["low_contrast"] = {
@@ -1003,8 +1003,8 @@
 					BorderColor3 = rgb(0, 0, 0);
 					Size = dim2(1, -2, 1, -2);
 					BorderSizePixel = 0;
-					BackgroundColor3 = themes.preset.
-				});	library:apply_theme(items.Background, "", "BackgroundColor3")
+					BackgroundColor3 = themes.preset.high_contrast
+				});	library:apply_theme(items.Background, "high_contrast", "BackgroundColor3")
 				
 				items.Inline = library:create( "Frame" , {
 					Parent = items.Background;
@@ -1416,7 +1416,7 @@
 					Name = "",
 					Rotation = 90,
 					Color = rgbseq{
-						rgbkey(0, themes.preset.),
+						rgbkey(0, themes.preset.high_contrast),
 						rgbkey(1, themes.preset.low_contrast)
 					}
 				})
@@ -1505,7 +1505,7 @@
 					Name = "",
 					Rotation = 90,
 					Color = rgbseq{
-						rgbkey(0, themes.preset.),
+						rgbkey(0, themes.preset.high_contrast),
 						rgbkey(1, themes.preset.low_contrast)
 					}
 				})
@@ -1528,7 +1528,7 @@
 
 			-- main window
 				local main_window = library:panel({
-					name = properties and properties.name or "$ blackwing.tech $ | ", 
+					name = properties and properties.name or "Blackwing.tech | ", 
 					size = dim2(0, 604, 0, 628),
 					position = dim2(0, (camera.ViewportSize.X / 2) - 302 - 96, 0, (camera.ViewportSize.Y / 2) - 421 - 12),
 					image = "rbxassetid://98823308062942",
@@ -1633,11 +1633,11 @@
 					image = "rbxassetid://115194686863276",
 				})
 
-				local watermark = library:watermark({default = os.date('$ blackwing.tech $ |  - %b %d %Y - %H:%M:%S')})  
+				local watermark = library:watermark({default = os.date('Blackwing.tech |  - %b %d %Y - %H:%M:%S')})  
 
 				task.spawn(function()
 					while task.wait(1) do 
-						watermark.change_text(os.date('$ blackwing.tech $ - Beta - %b %d %Y - %H:%M:%S'))
+						watermark.change_text(os.date('Blackwing.tech - Beta - %b %d %Y - %H:%M:%S'))
 					end 
 				end) 
 
@@ -1687,7 +1687,7 @@
 				:colorpicker({name = "Glow", color = themes.preset.glow, callback = function(color, alpha)
 					library:update_theme("glow", color)
 				end, flag = "Glow"})
-				section:slider({name = "Blur Size", flag = "Blur Size", min = 0, max = 56, default = 0, interval = 1, callback = function(int)
+				section:slider({name = "Blur Size", flag = "Blur Size", min = 0, max = 56, default = 15, interval = 1, callback = function(int)
 					if window.opened then 
 						blur.Size = int
 					end
@@ -1788,6 +1788,7 @@
 						blur:Destroy()
 					end})
 			-- 
+					
 			-- esp preview
 				local holder = library:panel({
 					name = "ESP Preview", 
@@ -1802,6 +1803,7 @@
 				local column = setmetatable(items, library):column() 
 				window.esp_section = column:section({name = "Main"})
 			--  
+
 			-- playerlist 
 				local holder = library:panel({
 					name = "Playerlist", 
@@ -3614,15 +3616,15 @@
 				});
 				
 				local section = setmetatable(cfg, library)
-                section:button_holder({})
-                section:button({name = "Copy", callback = function()
-                    library.copied_flag = flags[cfg.flag]
-                    library.is_rainbow = flags[cfg.flag .. "_RAINBOW_FLAG"] or false
-                end})
-                section:button({name = "Paste", callback = function()
-                    RainbowToggle.set(library.is_rainbow)
-                    cfg.set(library.copied_flag.Color, library.copied_flag.Transparency)
-                end})
+				section:button_holder({})
+				section:button({name = "Copy", callback = function()
+					library.copied_flag = flags[cfg.flag]
+					library.is_rainbow = cfg.flag .. "_RAINBOW_FLAG"
+				end})
+				section:button({name = "Paste", callback = function()
+					RainbowToggle.set(library.is_rainbow)
+					cfg.set(library.copied_flag.Color, library.copied_flag.Transparency)
+				end})
 
 				local main_holder_inline = library:create("Frame", {
 					Parent = main_holder,
